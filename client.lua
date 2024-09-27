@@ -78,6 +78,6 @@ RegisterCommand('flicker', function(source, args, rawCommand)
         print("Luzes próximas encontradas: " .. #nearbyLights)
         FlickerLights(nearbyLights)
     else
-        QBCore.Functions.Notify("Não há luzes de rua ou sinais próximos.", "error")
+        QBCore.Functions.Notify("There are no lights nearby.", "error")
     end
 end, false)
