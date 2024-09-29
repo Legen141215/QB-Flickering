@@ -1,5 +1,3 @@
--- Caminho: resources/[qb]/qb-flicker/client.lua
-
 QBCore = exports['qb-core']:GetCoreObject()
 
 local flickerRadius = 50.0
@@ -23,7 +21,7 @@ local lightObjects = {
     -1323100960,
     -655644382,
     -313922460,
-    729253480
+    729253480,
 }
 
 function IsLightObject(object)
@@ -76,8 +74,13 @@ RegisterCommand('flicker', function(source, args, rawCommand)
     local nearbyLights = GetNearbyLights(playerCoords, flickerRadius)
     if #nearbyLights > 0 then
         print("Luzes próximas encontradas: " .. #nearbyLights)
-        FlickerLights(nearbyLights)
+        TriggerServerEvent('qb-flicker:syncLights', nearbyLights)
     else
-        QBCore.Functions.Notify("There are no lights nearby.", "error")
+        QBCore.Functions.Notify("Não há luzes de rua ou sinais próximos.", "error")
     end
 end, false)
+
+RegisterNetEvent('qb-flicker:clientFlickerLights')
+AddEventHandler('qb-flicker:clientFlickerLights', function(lights)
+    FlickerLights(lights)
+end)
