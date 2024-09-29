@@ -6,9 +6,13 @@ description 'A script to control and manipulate street lights and traffic signal
 version '1.0.0'
 
 client_scripts {
-    'client.lua' -- Replace with the actual name of your script file
+    'client.lua'
 }
 
+
+server_scripts {
+    'server.lua'
+}
 
 dependencies {
     'qb-core'
